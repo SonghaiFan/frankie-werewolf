@@ -2,6 +2,8 @@
 
 # Werewolf Local
 
+[English](README.md) · [简体中文](README.zh-CN.md)
+
 Gather on the same Wi-Fi, open a room, and let the game move from day to night.
 
 [Guide](docs/guide.md) · [Run locally](#run-locally)
