@@ -1,0 +1,31 @@
+{
+  "title": "Werewolf",
+  "tagline": "Same room. Same Wi-Fi. New mystery.",
+  "category": "Play / Local multiplayer",
+  "layout": "screenshot",
+  "assets": [
+    {
+      "src": "assets/ui.png",
+      "fit": "contain",
+      "crop": [
+        478,
+        360,
+        752,
+        523
+      ],
+      "source_size": [
+        1708,
+        1245
+      ]
+    }
+  ],
+  "signature": "assets/frankie.svg",
+  "provenance": [
+    {
+      "file": "assets/ui.png",
+      "kind": "current local app screenshot",
+      "note": "Current lobby from the verified Werewolf client on an isolated local port; generated sample player name only.",
+      "captured_on": "2026-11-05"
+    }
+  ]
+}

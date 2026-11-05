@@ -1,0 +1,14 @@
+{
+  "repository": "frankie-werewolf",
+  "source_commit": "3310bb54a9383894066ad3c4789edd26e022505e",
+  "captured_on": "2026-11-05",
+  "source_state": "Current local working tree; existing uncommitted app edits were included where present.",
+  "materials": [
+    {
+      "file": "assets/ui.png",
+      "kind": "current local app screenshot",
+      "note": "Current lobby from the verified Werewolf client on an isolated local port; generated sample player name only.",
+      "captured_on": "2026-11-05"
+    }
+  ]
+}
