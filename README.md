@@ -22,7 +22,7 @@
 ### 🚀 Quick Start
 1. **Clone & Install**:
    ```bash
-   git clone https://github.com/SonghaiFan/werewolf_local_game.git
+   git clone https://github.com/SonghaiFan/frankie-werewolf.git
    cd local-werewolf
    npm install
    ```
@@ -52,7 +52,7 @@
 ### 🚀 快速启动
 1. **构建与安装**：
    ```bash
-   git clone https://github.com/SonghaiFan/werewolf_local_game.git
+   git clone https://github.com/SonghaiFan/frankie-werewolf.git
    cd local-werewolf
    npm install
    ```
