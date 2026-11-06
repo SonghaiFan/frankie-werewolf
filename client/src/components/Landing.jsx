@@ -173,7 +173,7 @@ export default function Landing() {
 
       {/* Minimal Footer */}
       <div className="absolute bottom-6 text-[9px] text-muted/20 uppercase tracking-[0.3em]">
-        Local Network v1.1
+<a href="https://songhaifan.github.io/frankie-werewolf/" aria-label="About Frankie werewolf" style={{ display: "inline-flex", alignItems: "center", padding: "6px", color: "inherit",  }}><span aria-hidden="true" style={{ display: "block", width: 76, height: 26, backgroundColor: "currentColor", mask: "url(/frankie-signature.svg) center / contain no-repeat", WebkitMask: "url(/frankie-signature.svg) center / contain no-repeat" }} /></a><span>Local Network v1.1</span>
       </div>
     </div>
   );
