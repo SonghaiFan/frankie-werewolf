@@ -1,0 +1,49 @@
+{
+  "repository": "SonghaiFan/frankie-werewolf",
+  "branch": "main",
+  "pages_url": "https://songhaifan.github.io/frankie-werewolf/",
+  "kind": "local",
+  "app_url": null,
+  "vercel_project": null,
+  "accent": "#884d50",
+  "tint": "#faf2f2",
+  "category": {
+    "en": "Together / Local network",
+    "zh": "一起 / 局域网"
+  },
+  "steps": {
+    "en": [
+      "Start the server and client on the host computer.",
+      "Connect phones to the same Wi-Fi and join the room.",
+      "Choose the setup and follow the judge through day and night."
+    ],
+    "zh": [
+      "在主机电脑启动服务端与客户端。",
+      "手机连接同一 Wi-Fi 后加入房间。",
+      "选择配置，跟随法官推进昼夜流程。"
+    ]
+  },
+  "media": [
+    {
+      "src": "docs/readme/assets/ui.png",
+      "caption": {
+        "en": "Current product interface and original assets.",
+        "zh": "项目真实界面或原始素材。"
+      },
+      "crop": [
+        478,
+        360,
+        752,
+        523
+      ],
+      "source_size": [
+        1708,
+        1245
+      ]
+    }
+  ],
+  "art_note": {
+    "en": "Current product interface and original assets.",
+    "zh": "素材来自项目当前界面与原始资源。"
+  }
+}

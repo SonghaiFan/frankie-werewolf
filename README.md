@@ -6,7 +6,7 @@
 
 Gather on the same Wi-Fi, open a room, and let the game move from day to night.
 
-[Guide](docs/guide.md) · [Run locally](#run-locally)
+[Introduction](https://songhaifan.github.io/frankie-werewolf/) · [Guide](docs/guide.md) · [Run locally](#run-locally)
 
 ## What it does
 

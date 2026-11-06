@@ -6,7 +6,7 @@
 
 连上同一个 Wi-Fi，打开房间，让游戏从白天走向黑夜。
 
-[项目指南](docs/guide.md) · [本地运行](#本地运行)
+[介绍页](https://songhaifan.github.io/frankie-werewolf/zh/) · [项目指南](docs/guide.md) · [本地运行](#本地运行)
 
 ## 可以做什么
 
