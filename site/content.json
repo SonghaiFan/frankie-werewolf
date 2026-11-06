@@ -1,0 +1,260 @@
+{
+  "en": {
+    "headline": "Same room.\nDifferent identities.",
+    "intro": "Play Werewolf together on local Wi-Fi. Phones hold the roles; your group supplies the conversation.",
+    "open": "Set up a local table",
+    "nav": [
+      "The game",
+      "First session",
+      "Screens",
+      "Host locally"
+    ],
+    "concept_title": "One server keeps the table together.",
+    "concept": "Run the game on a computer. Each person joins its room in a browser, checks their own identity, and follows the current phase. This is an in-person social game with shared state, not an online matchmaking service.",
+    "features": [
+      [
+        "A room, not an account",
+        "Choose a name, create a room and share its code or QR link. Other players ready up; the host starts and can adjust the role setup."
+      ],
+      [
+        "A private role view",
+        "Living players receive their own role and available actions. Wolves can recognize their teammates. Dead players and the finished table can see more information, so keep eliminated players out of the discussion."
+      ],
+      [
+        "People do the talking",
+        "The app orders speeches and votes. Speak in the room, then press Done to pass the turn. There is no built-in voice call, transcription or AI opponent."
+      ]
+    ],
+    "demo_title": "Choose a starting lineup",
+    "demo_note": "These compositions come from the actual 6 / 9 / 12-player buttons. This preview does not create a room or assign identities. If fewer people join, the server can rebalance the deck.",
+    "roles_title": "What can each role do?",
+    "roles": {
+      "WOLF": [
+        "Wolf",
+        "Choose a night victim. Wolves can propose a target to one another before the action."
+      ],
+      "VILLAGER": [
+        "Villager",
+        "Listen, discuss and vote during the day. No special night action."
+      ],
+      "SEER": [
+        "Seer",
+        "Check one target at night for Wolf or Good; this is not a reveal of every exact good role."
+      ],
+      "WITCH": [
+        "Witch",
+        "One save and one poison for the game. Saving yourself is blocked after the first night. Finish with Do nothing to advance."
+      ],
+      "GUARD": [
+        "Guard",
+        "Protect a player at night. This implementation blocks self-protection and the same target on consecutive nights."
+      ],
+      "HUNTER": [
+        "Hunter",
+        "A death can open a final shoot-or-skip decision. Night poison prevents the shot."
+      ]
+    },
+    "flow_title": "Night actions become a day discussion.",
+    "flow": [
+      [
+        "Check your identity",
+        "The start gives players time to reveal their role privately."
+      ],
+      [
+        "Act at night",
+        "Existing roles act in Guard → Wolves → Witch → Seer order; absent roles are skipped."
+      ],
+      [
+        "Speak and vote",
+        "Daytime announces results, orders speakers, collects votes and handles tied candidates with a second speech/vote round."
+      ],
+      [
+        "Follow the result",
+        "Elimination, last words and any Hunter decision resolve before the next cycle or a winning side."
+      ]
+    ],
+    "win_title": "Agree on the winning rule before starting.",
+    "win": "Good wins when no wolves remain. Both configurations also award wolves a win when their surviving number reaches or exceeds surviving good players. Side Kill additionally checks whether all ordinary villagers or all special good roles are gone. The Wipeout label is therefore not the only condition the server checks.",
+    "voice_title": "A Chinese judge on the host device.",
+    "voice": "Phase messages are spoken with the host browser’s speech synthesis in zh-CN, using an available Chinese voice. Other player browsers do not speak the same cues. Voice availability and audio playback depend on that browser; the English interface does not turn these announcements into English.",
+    "workflow_title": "Your first local table",
+    "steps": [
+      [
+        "Start the host computer",
+        "Install and run the client and server, then open the frontend address printed in the terminal. Keep that computer running."
+      ],
+      [
+        "Choose the lineup",
+        "Enter a name, create a game and choose a preset or role toggles. Use the matching number of real people for the intended preset."
+      ],
+      [
+        "Join from each phone",
+        "Connect to the same Wi-Fi and open the host computer’s LAN address. Use its room code or Show join QR code. A phone’s localhost is the phone itself."
+      ],
+      [
+        "Ready, then play",
+        "Each guest taps Ready. The host starts when everyone is ready; follow the role action, speech and voting controls."
+      ]
+    ],
+    "gallery_title": "Real local host and player views",
+    "captions": [
+      "Actual local landing and host entry.",
+      "The real preset, role and winning-rule controls before creating a room.",
+      "Host settings with two harmless local demo clients connected. This is a connection demonstration, not a six-player match.",
+      "The second demo player’s real mobile waiting view."
+    ],
+    "storage_title": "Keep the server running.",
+    "storage": [
+      [
+        "Rooms live in memory",
+        "The server holds active rooms in an in-memory Map. Restarting it loses those games. There is no account, cloud save, replay archive or match database."
+      ],
+      [
+        "Rejoin is tab-session recovery",
+        "The browser saves a room and player identifier in sessionStorage for reconnecting while that server room still exists. It is not an account recovery system."
+      ],
+      [
+        "Use a trusted local network",
+        "Room codes are ways to find a table, not account credentials. Run this prototype among people on the same trusted network; this intro does not publish your host to the internet."
+      ]
+    ],
+    "run_title": "Host it on your own network",
+    "run": "Development runs the Node/Socket.IO server and the Vite client together. The backend starts at port 3000 and tries the next free port; a local .port file tells Vite where to proxy. Vite normally uses 5173. Use the actual addresses printed, allow local firewall access, and avoid isolated guest Wi-Fi.",
+    "production": "For a built client, run npm run build --prefix client, then npm run server. Express serves client/dist and Socket.IO from its selected port. GitHub Pages only serves this introduction; it cannot run the room server. No Vercel app or AI key is required.",
+    "guide": "UI, role and voice maintenance guide",
+    "source": "Source code",
+    "footer": "A Frankie project by Songhai Fan",
+    "skip": "Skip to content",
+    "lineup": "Lineup",
+    "preset": "players"
+  },
+  "zh": {
+    "headline": "同一张桌，\n不同的身份。",
+    "intro": "在同一 Wi-Fi 下一起玩狼人杀。手机保存身份与操作，面对面的对话由你们完成。",
+    "open": "开始本地组局",
+    "nav": [
+      "了解游戏",
+      "第一次组局",
+      "真实界面",
+      "本地运行"
+    ],
+    "concept_title": "一台服务器，维持同一局游戏。",
+    "concept": "在电脑上启动游戏，每个人用浏览器加入房间，查看自己的身份，再跟随当前阶段操作。这是辅助面杀的共享状态工具，并不是线上匹配平台。",
+    "features": [
+      [
+        "加入房间，无需账号",
+        "输入昵称、创建房间，分享房间号或二维码。其他玩家准备后，由房主开始，也可以调整角色配置。"
+      ],
+      [
+        "各自查看身份",
+        "存活玩家收到自己的身份和可用操作，狼人可以识别队友。出局玩家与结束后的房间可以看到更多信息，因此出局后请退出场上讨论。"
+      ],
+      [
+        "交流由真人完成",
+        "应用排列发言顺序并收集投票。在现场说完后点 Done／结束发言，交给下一位。没有内置语音通话、转录或 AI 玩家。"
+      ]
+    ],
+    "demo_title": "先决定这一桌的配置",
+    "demo_note": "人数与角色组成提取自应用真实的 6 / 9 / 12 人预设。这里不会创建房间或分配身份。实际人数不足时，服务器可能重新平衡牌组。",
+    "roles_title": "每种身份能做什么？",
+    "roles": {
+      "WOLF": [
+        "狼人",
+        "夜间选择目标，也可以向狼队提出目标。"
+      ],
+      "VILLAGER": [
+        "村民",
+        "白天倾听、讨论与投票，没有专属夜间行动。"
+      ],
+      "SEER": [
+        "预言家",
+        "夜间查验一名玩家是狼人还是好人，不会显示所有好人的精确身份。"
+      ],
+      "WITCH": [
+        "女巫",
+        "整局有一瓶解药与一瓶毒药。第一夜后不能自救；用“什么也不做”完成行动并推进。"
+      ],
+      "GUARD": [
+        "守卫",
+        "夜间守护一人。本实现禁止自守，也禁止连续两夜守护同一个目标。"
+      ],
+      "HUNTER": [
+        "猎人",
+        "死亡时可能进入开枪或放弃的决定阶段。夜间被毒杀不能开枪。"
+      ]
+    },
+    "flow_title": "夜间行动，进入白天讨论。",
+    "flow": [
+      [
+        "先查看身份",
+        "开局会给玩家时间，私下翻开自己的身份。"
+      ],
+      [
+        "依次进行夜间行动",
+        "现有身份按守卫 → 狼人 → 女巫 → 预言家行动，不存在的身份会跳过。"
+      ],
+      [
+        "发言，再投票",
+        "白天公布结果，安排发言、收集投票。平票候选人会进入再次发言与投票。"
+      ],
+      [
+        "处理结果",
+        "放逐、遗言与可能的猎人决定完成后，进入下一轮或结束游戏。"
+      ]
+    ],
+    "win_title": "开局前，先说清获胜规则。",
+    "win": "狼人全部出局时，好人获胜。两种配置也都检查狼人人数是否达到或超过存活好人人数，达到时狼人获胜。“屠边”还会检查普通村民或特殊好人是否全部出局。因此，“屠城／Wipeout”这个标签并不是服务器唯一检查的结束条件。",
+    "voice_title": "房主设备上的中文法官。",
+    "voice": "房主浏览器使用 zh-CN 语音合成播放阶段提示，优先选择可用的中文声音。其他玩家不会重复播放相同提示。是否有声音取决于浏览器与可用语音；切换英文界面不会把播报变成英文。",
+    "workflow_title": "第一次在本地组局",
+    "steps": [
+      [
+        "启动房主电脑",
+        "安装并运行前后端，打开终端打印的前端地址。游戏期间保持电脑与进程运行。"
+      ],
+      [
+        "选择角色配置",
+        "输入昵称、创建游戏，选择预设或角色开关。预设应配合相应数量的真实玩家使用。"
+      ],
+      [
+        "每部手机加入",
+        "连接同一 Wi-Fi，打开房主电脑的局域网地址，再用房间号或二维码加入。手机上的 localhost 指向手机自己。"
+      ],
+      [
+        "准备后开始",
+        "每位玩家点击准备，房主在所有人就绪后开始。按身份操作、发言与投票提示推进。"
+      ]
+    ],
+    "gallery_title": "真实的本地主机与玩家界面",
+    "captions": [
+      "本地真实首页与创建入口。",
+      "创建前的真实人数预设、角色与获胜规则配置。",
+      "两个无个人信息的本地演示客户端连接后的房主设置。这是连接演示，并非六人完整对局。",
+      "第二个演示玩家在手机尺寸下的真实等待界面。"
+    ],
+    "storage_title": "让服务器保持运行。",
+    "storage": [
+      [
+        "房间保存在内存中",
+        "当前房间位于服务器的内存 Map。重启后对局会丢失，没有账号、云存档、回放档案或对局数据库。"
+      ],
+      [
+        "重连依赖当前标签页",
+        "浏览器用 sessionStorage 保存房间与玩家标识，用于在服务器房间仍存在时重连；它不是账号恢复功能。"
+      ],
+      [
+        "在可信局域网中使用",
+        "房间号用于找到一桌游戏，并不是账号凭证。适合在同一可信网络的人之间运行；这个介绍页不会把主机发布到互联网。"
+      ]
+    ],
+    "run_title": "在自己的网络里运行",
+    "run": "开发模式同时运行 Node／Socket.IO 服务器与 Vite 客户端。后端从 3000 端口开始尝试空闲端口，通过本地 .port 文件告诉 Vite 代理位置；Vite 通常使用 5173。请以终端实际地址为准，允许本地防火墙访问，并避免相互隔离的访客 Wi-Fi。",
+    "production": "如使用构建后的客户端，先运行 npm run build --prefix client，再运行 npm run server。Express 会在选定端口提供 client/dist 与 Socket.IO。GitHub Pages 只运行这个介绍页，不能托管房间服务器；不需要 Vercel 应用或 AI key。",
+    "guide": "界面、角色与语音素材维护指南",
+    "source": "源代码",
+    "footer": "Songhai Fan 的 Frankie 项目",
+    "skip": "跳至内容",
+    "lineup": "角色组成",
+    "preset": "人"
+  }
+}

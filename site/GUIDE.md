@@ -1,46 +1,68 @@
-# Introduction page maintenance / 介绍页维护
+# Werewolf intro maintenance / 狼人杀介绍页维护
 
-[English README](../README.md) · [中文 README](../README.zh-CN.md)
+The independent Pages site explains the current local game. English is `/`, Chinese is `/zh/`. It never connects a visitor to a room automatically. / 介绍页独立运行，不会自动替访客连接或创建房间。
 
-## Two destinations / 两个入口
+## Change the right source / 更新对应来源
 
-- Introduction / 介绍页: https://songhaifan.github.io/frankie-werewolf/
-- App / 应用: No browser app deployment. Follow the local/native/API guide.
-- The introduction is a standalone static site. It never builds the app or reads environment files. / 介绍页独立构建，不构建应用，也不读取环境变量文件。
-- English is the default; `zh/` is the Chinese version. / 英文默认，中文位于 `zh/`。
+- `site/content.json`: bilingual explanations, captions, role descriptions, setup and limitations. Recheck source behavior before making a claim.
+- `site/build.py`: page structure, exact gallery copies and source extraction. It reads the actual presets from `client/src/components/GameSettings.jsx` and original role icons from `RoleIcons.jsx`. Keep the parser fail-fast when preset syntax changes.
+- `site/demo.js`: unsaved preset preview only. It must not assign real roles, emit sockets or pretend to run the game.
+- `site/style.css`: intro layout, zinc-dark/indigo surfaces, readable text and phone collapse. Match real tokens in `client/src/index.css`; retain focus and reduced-motion behavior.
 
-## Files to update / 更新哪些文件
+中英文文案必须同步核对实际代码。人数预设与角色图标直接从应用源码提取；预览不能伪装为真实开局，也不能产生网络房间。
 
-| Source / 来源 | What it shows / 内容 |
-| --- | --- |
-| `docs/readme/assets/ui.png` | Current product interface and original assets. |
+## Assets to replace / 哪些素材要更新
 
-- `../README.md` and `../README.zh-CN.md`: product introduction, features, setup, limitations and developer commands. Update both languages together. / 同步维护双语介绍、功能、运行步骤与限制。
-- `project.json`: app URL, repository, category, colors, three user steps and the ordered media list. / 应用链接、仓库、分类、颜色、使用步骤与有序素材列表。
-- `style.css`: this app's visual treatment within the shared layout. / 统一结构下的项目视觉风格。
-- `build.py`: portable standard-library renderer. / 可独立使用的 Python 标准库构建器。
+| Asset | Replace when | Owning UI |
+| --- | --- | --- |
+| `site/assets/home-current.png` | Name, title, host/join entry changes | `Landing.jsx`, `landing/HomeView.jsx`, `LandingHeader.jsx` |
+| `site/assets/setup-current.png` | Presets, role switches or win labels change | `GameSettings.jsx`, `landing/HostView.jsx` |
+| `site/assets/host-current.png` | Host settings, ready/start or room layout changes | `WaitingPanel.jsx`, `GameRoom.jsx`, `AvatarCard.jsx` |
+| `site/assets/player-current.png` | Mobile waiting/ready layout changes | `WaitingPanel.jsx`, `GameRoom.jsx` |
+| `docs/readme/banner.png` | Approved family banner refreshed | Copied to Open Graph image |
+| `docs/readme/assets/frankie.svg` | Approved signature changes | Footer artwork |
 
-## Replacing screenshots and GIFs / 替换截图和动图
+Capture real settled UI using harmless demo names and a disposable local room. Never capture personal rooms, private identities from an active party, real network addresses or a reusable personal session identifier. The current captures are two local browser clients; captions explicitly avoid claiming a full party. Wait for settings/state broadcasts to settle, and verify the displayed toggles before recording. Hero crop is `.hero-screen img`; adjust crop rather than redrawing a UI.
 
-1. Run the current app and capture real, settled UI. Use synthetic or guest data; hide credentials and private content. For GIFs, record a real interaction from start to finish, rather than animating a static screenshot. / 运行当前版本，使用访客或示例数据采集稳定画面；GIF 应录制真实操作，不把静态图伪装成操作录像。
-2. Replace the corresponding source file above when its screen changes. These banner assets are shared with the README; replacing them may update both the banner and this page. Keep `docs/readme/source-version.json` and banner provenance accurate. / 界面变化后替换对应文件；共享素材会同时影响 banner，需同步更新来源记录。
-3. For a new screen or GIF, add it under `site/assets/` and add an entry to `project.json` → `media` with `src`, bilingual `caption`, and optionally `captured_on` / `source_revision`. The first item is the hero; the full list is the gallery. Use a GIF's first frame as an informative resting frame, keep files small, and provide a still alternative. / 新素材放到 `site/assets/`，登记双语说明、采集时间和版本；第一项为主图，其余进入画廊。GIF 应有可读首帧并保留静态替代图。
-4. If app behavior changes, update both READMEs and both `steps` arrays. Native screenshots and shared family artwork must be labelled honestly. / 行为变化时同步更新双语 README 和使用步骤；区分原生截图与系列共享素材。
-5. Build and inspect desktop and mobile, in both languages. Check the app link and every image. / 构建后检查桌面、手机和两种语言，验证链接与所有图片。
+录制时使用无个人信息的演示昵称与临时房间；等待动画与状态同步完成。手机截图使用真实浏览器窄视口。不要把两台本地浏览器的连接演示写成完整多人对局或实机 Wi-Fi 测试。
+
+## Recheck rules and audio / 行为、规则与语音
+
+- Roles: `server/game/roles/*.js`, `RoleDefinitions.js`, `utils/roleDeck.js` and `utils/nightFlow.js`. Keep Guard, Witch and Hunter exceptions precise.
+- Winning rules: `utils/winLogic.js`. Both modes currently include wolf parity; the UI's Wipeout text alone is incomplete.
+- Day progression: `GameFlow.js`, `managers/DayManager.js`, `panels/DayPanel.jsx`; verify speeches, voting, ties and last words after changes.
+- Role visibility: `utils/stateView.js`; recheck what living/dead/finished clients see.
+- Judge voice: `client/src/hooks/useVoiceJudge.js` + `server/game/voiceMessages.js`. It uses host browser speech synthesis with Chinese cues, not recorded audio assets or English narration. If replaced by files later, list every real audio file and required language variant here.
+- Persistence: `server/server.js`, `client/src/App.jsx`, `Landing.jsx`. Room memory and tab-session reconnect are not cloud saves.
+
+修改角色、胜负、阶段或语音后，要同时更新文案与预览数据。界面英文与中文法官语音是两个不同的功能，不能混为一谈。
+
+## Run the actual app / 运行真实应用
+
+```sh
+npm ci
+npm start
+```
+
+Open the frontend URL printed by Vite (normally 5173). Other phones must use the host computer's LAN address on the same Wi-Fi, not `localhost`. The backend starts from 3000 and tries another free port; Vite reads `.port` for its proxy. Keep both processes and the computer running. Check firewall access and client isolation on guest networks.
+
+A built-client alternative:
+
+```sh
+npm run build --prefix client
+npm run server
+```
+
+Express serves `client/dist` and Socket.IO together from its actual selected port. Pages is the introduction only; no Vercel runtime is provisioned. / GitHub Pages 只负责介绍页，游戏仍需本地服务器。
+
+## Build, check and publish / 构建、检查、发布
 
 ```sh
 python3 site/build.py
 python3 -m http.server 8080 --directory _site --bind 127.0.0.1
+node --check site/demo.js
 ```
 
-Open http://127.0.0.1:8080/ and http://127.0.0.1:8080/zh/.
+Inspect EN and Chinese at desktop and 390px width. Click all three preset controls and check summed role counts, role disclosures, keyboard focus, images, links and no horizontal overflow. Check the actual app separately if its behavior changed. Source-watch paths in `.github/workflows/pages.yml` refresh the preset/icon extraction; screenshots still require manual replacement.
 
-## Publishing / 发布
-
-Push the reviewed page changes to `main`. `.github/workflows/pages.yml` publishes only `_site/` to GitHub Pages. App deployment remains separate on Vercel for browser apps; API services and native/local apps retain their own runtime. Never include `.env` files or unrelated work in a page commit. / 推送审核后的页面改动到 `main`，工作流只发布 `_site/`；应用与 API 的部署分别管理，勿提交环境变量文件或其他未完成代码。
-
-If the branch or repository owner changes, update `project.json`, the workflow branch and README introduction links. / 分支或仓库所有者变化时，同步修改配置、工作流与介绍页链接。
-
-## App signature / 应用签名
-
-The app signature uses `client/public/frankie-signature.svg`, copied from the approved `docs/readme/assets/frankie.svg`. It links to this introduction page. / 应用签名使用已确认的系列 SVG，并链接到介绍页。
+Commit reviewed `site/` and necessary workflow changes, then push `main`. Never include environment files or unrelated work. / 只提交审阅后的介绍页与必要工作流改动，保留其他未完成修改。
